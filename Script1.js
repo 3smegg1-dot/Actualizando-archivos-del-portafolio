@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const body = document.getElementById('body');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const darkModeIcon = document.getElementById('darkModeIcon');
@@ -24,17 +24,20 @@
         }
     }
 
-    // Inicialización: Cargar la preferencia del usuario o detectar el esquema de color
+    // Inicialización: Cargar la preferencia del usuario
     const currentMode = localStorage.getItem('darkMode');
-
+    
     if (currentMode === 'enabled') {
+        // Si el usuario lo habilitó antes, mantenerlo
         setDarkMode(true);
     } else if (currentMode === 'disabled') {
+        // Si el usuario lo deshabilitó antes, mantenerlo
         setDarkMode(false);
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // Auto-detect prefers-color-scheme
+        // Si no hay preferencia guardada, pero el sistema prefiere oscuro, activar
         setDarkMode(true);
     } else {
+        // Por defecto, modo claro
         setDarkMode(false);
     }
 
@@ -83,7 +86,7 @@
 
         // Simular el proceso de envío
         setTimeout(() => {
-            alert('¡Mensaje enviado! 📧 Gracias por contactar a Ronny A. Abad R.. Te responderemos pronto.');
+            alert('¡Mensaje enviado! 📧 Gracias por contactar a Esmeralda Guzman. Te responderemos pronto.');
             contactForm.reset(); // Limpiar el formulario
         }, 300); // Pequeño delay para simular el procesamiento
     });
