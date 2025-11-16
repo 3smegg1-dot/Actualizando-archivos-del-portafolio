@@ -4,11 +4,17 @@
     --primary-color-hover: #F7D1DC; /* Hover pastel */
     --primary-color-active: #E69AB7; /* Click activo */
 
+    /* Modo Claro */
     --bg-light: #FFF0F6; /* Fondo rosado claro */
     --text-light: #4A4A4A; /* Texto gris elegante */
+    --navbar-bg-light: #FFF0F6; /* Fondo navbar claro */
+    --footer-bg-light: #8A6F78; /* Fondo footer claro */
 
-    --bg-dark: #8A6F78; /* Rosa malva para fondo oscuro */
+    /* Modo Oscuro */
+    --bg-dark: #343a40; /* Gris oscuro para el fondo */
     --text-dark: #F8F9FA; /* Texto claro en modo oscuro */
+    --navbar-bg-dark: #343a40;
+    --footer-bg-dark: #212529; /* Gris a煤n m谩s oscuro para el footer */
 
     --gradient-color-1: #F4AFC6;
     --gradient-color-2: #F7C9D4;
@@ -18,7 +24,7 @@
     --transition-duration: 0.3s;
 }
 
-/* Base Body y Transici髇 de Modo Oscuro */
+/* Base Body y Transici贸n de Modo Oscuro */
 body {
     transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
     scroll-behavior: smooth;
@@ -26,59 +32,82 @@ body {
     background-color: var(--bg-light); /* Fondo por defecto (modo claro) */
 }
 
-    /* Sobrescritura de Colores para Modo Oscuro (body.dark) */
-    body.dark {
-        --bg-light: var(--bg-dark); /* El fondo 'claro' ahora es el oscuro */
-        --text-light: var(--text-dark); /* El texto 'claro' ahora es el claro */
-        background-color: var(--bg-dark);
-        color: var(--text-dark);
+/* Modo Oscuro (body.dark) */
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+    /* Clases espec铆ficas para Modo Oscuro: Sobrescribir Bootstrap */
+    body.dark .bg-light {
+        background: var(--bg-dark) !important;
     }
 
-        /* Clases espec韋icas para Modo Oscuro */
-        body.dark .bg-light {
-            background: var(--bg-dark) !important;
-        }
+    body.dark .navbar {
+        background: var(--navbar-bg-dark) !important;
+        border-bottom: 1px solid var(--primary-color);
+    }
 
-        body.dark .card {
-            background: var(--bg-dark);
-            color: var(--text-dark);
-            border-color: var(--primary-color) !important;
-        }
+    body.dark .navbar-brand,
+    body.dark .nav-link {
+        color: var(--text-dark) !important;
+    }
 
-        body.dark .navbar {
-            background: var(--bg-dark) !important;
-            border-bottom: 1px solid var(--primary-color);
-        }
+    /* Elementos con fondo gris claro: cards, secciones bg-light */
+    body.dark .card,
+    body.dark #projects {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+        border-color: var(--primary-color) !important;
+    }
+    
+    body.dark .form-control {
+        background-color: #495057; /* Fondo de inputs oscuro */
+        border-color: #6c757d;
+        color: var(--text-dark);
+    }
+    
+    body.dark .form-label {
+        color: var(--text-dark);
+    }
+    
+    /* Footer oscuro en modo oscuro */
+    body.dark footer {
+        background-color: var(--footer-bg-dark) !important;
+    }
 
-        body.dark .navbar-brand,
-        body.dark .nav-link {
-            color: var(--text-dark) !important;
-        }
+    /* Ajuste de colores de texto e iconos */
+    body.dark i.fa-solid, 
+    body.dark i.fa-regular {
+        color: var(--text-dark); /* Asegura que los iconos gen茅ricos cambien */
+    }
 
-        body.dark i {
-            color: var(--text-dark);
-        }
+    body.dark .text-dark {
+        color: var(--text-dark) !important;
+    }
 
-        /* Asegurar que los ic髇os y textos oscuros cambien */
-        body.dark .text-dark {
-            color: var(--text-dark) !important;
-        }
+    body.dark .text-muted {
+        color: var(--text-dark) !important;
+        opacity: 0.7;
+    }
 
-        body.dark .text-muted {
-            color: var(--text-dark) !important;
-            opacity: 0.8;
-        }
-
-        body.dark .github-icon,
-        body.dark .fab.fa-x-twitter {
-            color: var(--text-dark) !important;
-        }
+    /* Iconos de Redes Sociales */
+    body.dark .github-icon,
+    body.dark .fab.fa-x-twitter {
+        color: var(--text-dark) !important;
+    }
+    
+    /* Icono del bot贸n del modo oscuro */
+    body.dark #darkModeToggle {
+        color: var(--text-dark) !important; /* 脥cono de sol blanco/claro */
+        background-color: var(--primary-color) !important;
+    }
 
 /* Botones */
-button, .btn {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: none;
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    color: white !important; /* COLOR CORREGIDO: El texto debe ser blanco en el bot贸n de color primario */
+    border: none !important;
     border-radius: 8px;
     padding: 10px 18px;
     cursor: pointer;
@@ -86,13 +115,14 @@ button, .btn {
     box-shadow: 0 4px 6px var(--button-shadow);
 }
 
-    button:hover, .btn:hover {
-        background-color: var(--primary-color-hover);
+    .btn-primary:hover {
+        background-color: var(--primary-color-hover) !important;
         transform: translateY(-2px);
+        color: white !important;
     }
 
-    button:active, .btn:active {
-        background-color: var(--primary-color-active);
+    .btn-primary:active {
+        background-color: var(--primary-color-active) !important;
         transform: translateY(0);
         box-shadow: 0 2px 4px var(--button-shadow);
     }
@@ -103,6 +133,12 @@ button, .btn {
     background-size: 400% 400%;
     animation: gradientShift 15s infinite ease;
 }
+
+/* El texto del HOME debe ser siempre blanco o muy claro para verse sobre el gradiente */
+#home h1, #home p {
+    color: white !important;
+}
+
 
 @keyframes gradientShift {
     0% {
@@ -118,7 +154,7 @@ button, .btn {
     }
 }
 
-/* Animaci髇 de Entrada Suave (fadeInUp) para Homepage */
+/* Animaci贸n de Entrada Suave (fadeInUp) para Homepage */
 #home h1 {
     opacity: 0;
     transform: translateY(20px);
@@ -132,7 +168,7 @@ button, .btn {
     }
 }
 
-/* 3. Proyectos Card Hover y Animaci髇 Heartbeat */
+/* 3. Proyectos Card Hover y Animaci贸n Heartbeat */
 .project-card {
     border: 2px solid var(--primary-color) !important;
     transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
@@ -180,7 +216,7 @@ a {
         text-decoration: underline;
     }
 
-/* Optimizaci髇 Responsive para M髒iles */
+/* Optimizacin Responsive para Mviles */
 @media (max-width: 768px) {
     .display-3 {
         font-size: 2.5rem;
